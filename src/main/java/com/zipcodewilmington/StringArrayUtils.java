@@ -1,5 +1,7 @@
 package com.zipcodewilmington;
 
+import java.util.*;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -25,7 +27,7 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        return array[array.length - 1];
     }
 
     /**
@@ -33,7 +35,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        return array[array.length-2];
     }
 
     /**
@@ -42,7 +44,12 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return false;
+        for (String string : array) {
+            if (string == value) {
+                return true;
+            }
+        }
+            return false;
     }
 
     /**
@@ -50,15 +57,23 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        String[] reversed = new String[array.length];
+        for (int i = 0; i < array.length; i++) {
+            reversed[i] = array[array.length - 1 - i]; // Fill the new array
+        } return reversed;
     }
-
     /**
      * @param array array of String objects
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+        String[] reversed = StringArrayUtils.reverse(array);
+        int compare = Arrays.compare(array, reversed);
+        if (compare == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -66,17 +81,31 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+        Set<Character> charSet = new HashSet<>();
+        for (String string : array) {
+            for (char c : string.toLowerCase().toCharArray()) {
+                if (Character.isAlphabetic(c)) {
+                    charSet.add(c);
+                }
+            }
+        } return charSet.size() == 26;
     }
 
-    /**
-     * @param array array of String objects
-     * @param value value to check array for
-     * @return number of occurrences the specified `value` has occurred
-     */ // TODO
+
+        /**
+         * @param array array of String objects
+         * @param value value to check array for
+         * @return number of occurrences the specified `value` has occurred
+         */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int valueCount = 0;
+        for (String string : array) {
+            if (string == value) {
+                valueCount += 1;
+            }
+        } return valueCount;
     }
+
 
     /**
      * @param array         array of String objects
@@ -84,8 +113,15 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        ArrayList<String> newGuy = new ArrayList<>();
+        for (String string : array) {
+            if (string != valueToRemove) {
+                newGuy.add(string);
+            }
+        }
+        return newGuy.toArray(new String[0]);
     }
+
 
     /**
      * @param array array of chars
