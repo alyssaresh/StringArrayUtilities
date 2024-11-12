@@ -128,8 +128,22 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        int counter = 0;
+        String[] noDupes = new String[array.length-counter];
+        for (int i = 0; i<array.length-1; i++){
+            if (array[i] == array[i+1]){
+                counter+=1;
+            }
+        }
+
+//        ArrayList<String> noDupes = new ArrayList<>();
+//        for (int i=0; i<array.length-1; i++) {
+//            if (!Objects.equals(array[i], array[i + 1])) {
+//                noDupes.add(array[i]);
+//            } else {noDupes.add(array[i]);}
+//        } return noDupes.toArray(new String[0]);
     }
+
 
     /**
      * @param array array of chars
